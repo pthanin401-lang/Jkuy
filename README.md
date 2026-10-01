@@ -1,1 +1,844 @@
-# Jkuy
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CR7 Fan Site</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Style -->
+    <style>
+/* ==========================================================================
+   Learning Platform - Shared Stylesheet (Bootstrap 5 Companion)
+   สัปดาห์ที่ 16: เว็บไซต์แพลตฟอร์มการเรียนรู้ 4 หน้า
+   ========================================================================== */
+
+:root {
+  /* สเต็ปที่ 4: กำหนดตัวแปรธีมสีประจำเว็บไซต์ (CSS Variables) เช่น --bs-primary, --brand-blue */
+  --bs-primary: #dc2626;
+  --bs-primary-rgb: 220, 38, 38;
+  --brand-blue: #dc2626;
+  --brand-dark: #1e293b;
+  --brand-muted: #64748b;
+  --brand-light: #f8fafc;
+}
+
+/* ปุ่มหลักสีแดง (Bootstrap กำหนดสีปุ่มแยก จึงต้อง override) */
+.btn-primary {
+  --bs-btn-bg: #dc2626;
+  --bs-btn-border-color: #dc2626;
+  --bs-btn-hover-bg: #b91c1c;
+  --bs-btn-hover-border-color: #b91c1c;
+  --bs-btn-active-bg: #991b1b;
+  --bs-btn-active-border-color: #991b1b;
+  --bs-btn-disabled-bg: #dc2626;
+  --bs-btn-disabled-border-color: #dc2626;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1e293b;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   1. Shared Navbar Styles
+   -------------------------------------------------------------------------- */
+.navbar {
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link {
+  color: #475569;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* สเต็ปที่ 5: กำหนดสไตล์เมื่อ hover และสถานะหน้าปัจจุบัน (active) ของเมนู Navbar */
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--brand-blue) !important;
+  font-weight: 600;
+}
+
+.logo-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  color: #334155;
+  transition: transform 0.2s ease;
+}
+
+.logo-badge:hover {
+  transform: rotate(45deg);
+  background-color: #e2e8f0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Shared Footer Styles
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  margin-top: auto;
+}
+
+.site-footer a {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer a:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Course Cards (Used in index.html & course.html)
+   -------------------------------------------------------------------------- */
+.course-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+}
+
+.course-card img {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.course-card .card-body {
+  padding: 1.25rem;
+}
+
+.course-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #0f172a;
+}
+
+.course-card .price {
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Index Specific Styles
+   -------------------------------------------------------------------------- */
+.hero-spaced-tag {
+  letter-spacing: 4px;
+  color: var(--brand-blue);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: lowercase;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.banner-title-big {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--brand-blue);
+  letter-spacing: -0.5px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Course Detail Specific Styles
+   -------------------------------------------------------------------------- */
+.badge-tag {
+  background-color: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.preview-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.preview-wrapper .fav-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  z-index: 2;
+}
+
+.preview-wrapper .fav-btn:hover {
+  transform: scale(1.1);
+  color: #ef4444;
+}
+
+/* --------------------------------------------------------------------------
+   6. Instructors Specific Styles
+   -------------------------------------------------------------------------- */
+.instructor-avatar {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  filter: grayscale(100%);
+}
+
+@media (max-width: 768px) {
+  .instructor-avatar {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+.tech-icon-box {
+  width: 62px;
+  height: 62px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tech-icon-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.15);
+  border-color: var(--brand-blue);
+}
+
+/* --------------------------------------------------------------------------
+   7. Contact Specific Styles
+   -------------------------------------------------------------------------- */
+.contact-input {
+  background-color: #e2e8f0;
+  border: 1px solid transparent;
+  border-radius: 50rem;
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+
+.contact-input:focus {
+  background-color: #ffffff;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+  outline: none;
+}
+
+.contact-textarea {
+  background-color: #e2e8f0;
+  border: 1px solid transparent;
+  border-radius: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  min-height: 160px;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+
+.contact-textarea:focus {
+  background-color: #ffffff;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+  outline: none;
+}
+
+.contact-info-band {
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  padding: 5rem 0;
+}
+
+.contact-circle-icon {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-size: 3.5rem;
+}
+
+.page { display: none; }
+.page.show { display: block; }
+
+</style>
+</head>
+<body>
+<site-header></site-header>
+
+<div class="page" id="page-index">
+<main>
+        <!-- 1. Hero Section -->
+        <section class="py-5">
+            <div class="container py-lg-4">
+                <div class="row align-items-center g-5">
+                    <!-- Hero Left: Image (ภาพนักเรียนจากแหล่งภาพฟรี Unsplash) -->
+                    <div class="col-lg-6">
+                        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20900%20700%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23450a0a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22900%22%20height%3D%22700%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22450.0%22%20y%3D%22336.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22294%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3ECR7%3C/text%3E%3Ctext%20x%3D%22450.0%22%20y%3D%22574.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2249%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3ECRISTIANO%20RONALDO%3C/text%3E%3C/svg%3E" 
+                             alt="CR7 graphic" 
+                             class="img-fluid rounded-4 shadow">
+                    </div>
+
+                    <!-- Hero Right: Text & Call to Actions -->
+                    <div class="col-lg-6">
+                        <span class="hero-spaced-tag">f a n &nbsp; s i t e</span>
+                        <h1 class="display-4 fw-bold mb-4 lh-sm text-dark">
+                            Cristiano<br>Ronaldo<br>Fan Site
+                        </h1>
+                        <div class="d-flex gap-3">
+                            <!-- สเต็ปที่ 2.1: เชื่อมปุ่ม Buy now ไปหน้าคอร์ส (ใส่ href="#") -->
+                            <a href="#" class="btn btn-primary px-4 py-2 fw-semibold">Career</a>
+                            <a href="#about" class="btn btn-dark px-4 py-2 fw-semibold">Show more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Promo & Classroom Banner Section -->
+        <section id="about" class="py-5 bg-white text-center">
+            <div class="container py-lg-3">
+                <h2 class="fw-bold mb-2 fs-1 text-dark">Hard work. Discipline. Results.</h2>
+                <p class="fs-5 text-secondary mb-2">From Madeira to the biggest stages in football</p>
+                <div class="banner-title-big mb-4">Legend</div>
+
+                <!-- ภาพห้องเรียนและการสอน (ภาพฟรี Unsplash) -->
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201200%20480%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23450a0a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221200%22%20height%3D%22480%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22600.0%22%20y%3D%22230.39999999999998%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22380%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3E7%3C/text%3E%3Ctext%20x%3D%22600.0%22%20y%3D%22393.59999999999997%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2233%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3EHARD%20WORK%20%20%C2%B7%20%20DISCIPLINE%20%20%C2%B7%20%20RESULTS%3C/text%3E%3C/svg%3E" 
+                             alt="Hard work, discipline, results" 
+                             class="img-fluid rounded-4 shadow-sm w-100" 
+                             style="max-height: 480px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Course Section (Grid 3 ใบ) -->
+        <section class="py-5">
+            <div class="container py-lg-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold text-primary display-6 mb-0">Career</h2>
+                    <!-- สเต็ปที่ 2.2: เชื่อมปุ่ม more ไปหน้าคอร์ส (ใส่ href="#") -->
+                    <a href="#" class="btn btn-dark rounded-pill px-3 py-1 small">more</a>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Course 1: Sporting CP -->
+                    <div class="col-md-4">
+                        <div class="course-card h-100">
+                            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20400%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2315803d%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23052e16%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22192.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22170%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3ESCP%3C/text%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22328.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3ESPORTING%20CP%3C/text%3E%3C/svg%3E" 
+                                 alt="Sporting CP">
+                            <div class="card-body">
+                                <h5 class="card-title">Sporting CP</h5>
+                                <div class="price text-primary fs-5">2002–2003</div>
+                                <p class="card-text text-secondary mb-0">Where his professional career began, in the Portuguese league.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 2: Manchester United -->
+                    <div class="col-md-4">
+                        <div class="course-card h-100">
+                            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20400%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23450a0a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22192.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22150%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3EMUFC%3C/text%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22328.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3EMANCHESTER%20UNITED%3C/text%3E%3C/svg%3E" 
+                                 alt="Manchester United">
+                            <div class="card-body">
+                                <h5 class="card-title">Manchester United</h5>
+                                <div class="price text-primary fs-5">2003–2009, 2021–2022</div>
+                                <p class="card-text text-secondary mb-0">Won the Premier League and the Champions League, and his first Ballon d'Or in 2008.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 3: Real Madrid -->
+                    <div class="col-md-4">
+                        <div class="course-card h-100">
+                            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20400%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22192.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22190%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3ERM%3C/text%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22328.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3EREAL%20MADRID%3C/text%3E%3C/svg%3E" 
+                                 alt="Real Madrid">
+                            <div class="card-body">
+                                <h5 class="card-title">Real Madrid</h5>
+                                <div class="price text-primary fs-5">2009–2018</div>
+                                <p class="card-text text-secondary mb-0">Four Champions League titles and the club's all-time top scorer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div class="page" id="page-course">
+<main class="py-5">
+        <div class="container py-lg-4">
+            <!-- 1. Course Showcase Details -->
+            <div class="row g-5 mb-5 pb-4 align-items-start">
+                <!-- ฝั่งซ้าย: รูปพรีวิวและปุ่มหัวใจ (ภาพฟรี Unsplash) -->
+                <div class="col-lg-6">
+                    <div class="preview-wrapper">
+                        <button type="button" class="fav-btn" title="Save to favorites">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201000%20700%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23450a0a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%221000%22%20height%3D%22700%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22500.0%22%20y%3D%22336.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22420%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3E5%3C/text%3E%3Ctext%20x%3D%22500.0%22%20y%3D%22574.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2249%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3EBALLON%20D%27OR%3C/text%3E%3C/svg%3E" 
+                             alt="Ballon d'Or graphic" 
+                             class="img-fluid w-100" 
+                             style="max-height: 480px; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- ฝั่งขวา: ข้อมูลคอร์ส, ตัวเลือก และฟอร์มสั่งซื้อ -->
+                <div class="col-lg-6">
+                    <h1 class="fw-bold text-dark fs-2 mb-2">Ballon d'Or Winner</h1>
+                    <span class="badge-tag mb-3">Legend</span>
+
+                    <div class="my-3">
+                        <span class="fs-3 fw-bold text-dark align-top">★</span>
+                        <span class="display-5 fw-bold text-dark">5</span>
+                        <span class="fs-4 fw-medium text-dark ms-1">times</span>
+                    </div>
+
+                    <p class="text-secondary mb-4">Five Ballon d'Or awards (2008, 2013, 2014, 2016, 2017) and five UEFA Champions League titles.</p>
+
+                    <!-- Form Select Row -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <label class="form-label small text-muted fw-semibold">Club</label>
+                            <select class="form-select form-select-lg fs-6 py-2">
+                                <option selected>Sporting CP</option>
+                                <option value="1">Manchester United</option>
+                                <option value="2">Real Madrid</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label small text-muted fw-semibold">Competition</label>
+                            <select class="form-select form-select-lg fs-6 py-2">
+                                <option selected>UEFA Champions League</option>
+                                <option value="1">UEFA Euro 2016</option>
+                                <option value="2">UEFA Nations League</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ปุ่ม Follow Ronaldo เต็มความกว้าง -->
+                    <button class="btn btn-primary w-100 py-3 fw-semibold fs-5 rounded-3 mb-4 shadow-sm">
+                        Follow Ronaldo
+                    </button>
+
+                    <!-- Accordion FAQ แบบพับได้ -->
+                    <div class="accordion border rounded-3 overflow-hidden" id="courseAccordion">
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button fw-bold text-dark shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Who is Cristiano Ronaldo?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#courseAccordion">
+                                <div class="accordion-body text-secondary pt-0">
+                                    Cristiano Ronaldo dos Santos Aveiro was born on 5 February 1985 in Funchal, Madeira, Portugal. He is a forward who has played for Sporting CP, Manchester United, Real Madrid, Juventus and Al Nassr, and for the Portugal national team.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Course Grid Section (3 ใบด้านล่าง) -->
+            <div class="pt-4">
+                <h2 class="fw-bold text-primary display-6 mb-4">Career</h2>
+                
+                <div class="row g-4">
+                    <!-- Course 1 -->
+                    <div class="col-md-4">
+                        <div class="course-card h-100">
+                            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20400%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2315803d%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23052e16%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22192.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22170%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3ESCP%3C/text%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22328.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3ESPORTING%20CP%3C/text%3E%3C/svg%3E" 
+                                 alt="Sporting CP">
+                            <div class="card-body">
+                                <h5 class="card-title">Sporting CP</h5>
+                                <div class="price text-primary fs-5">2002–2003</div>
+                                <p class="card-text text-secondary mb-0">Where his professional career began, in the Portuguese league.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="col-md-4">
+                        <div class="course-card h-100">
+                            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20400%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23450a0a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22192.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22150%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3EMUFC%3C/text%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22328.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3EMANCHESTER%20UNITED%3C/text%3E%3C/svg%3E" 
+                                 alt="Manchester United">
+                            <div class="card-body">
+                                <h5 class="card-title">Manchester United</h5>
+                                <div class="price text-primary fs-5">2003–2009, 2021–2022</div>
+                                <p class="card-text text-secondary mb-0">Won the Premier League and the Champions League, and his first Ballon d'Or in 2008.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 3 -->
+                    <div class="col-md-4">
+                        <div class="course-card h-100">
+                            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20400%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230f172a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22192.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22190%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3ERM%3C/text%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22328.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2228%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3EREAL%20MADRID%3C/text%3E%3C/svg%3E" 
+                                 alt="Real Madrid">
+                            <div class="card-body">
+                                <h5 class="card-title">Real Madrid</h5>
+                                <div class="price text-primary fs-5">2009–2018</div>
+                                <p class="card-text text-secondary mb-0">Four Champions League titles and the club's all-time top scorer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="page" id="page-instructors">
+<main class="py-5">
+        <div class="container py-lg-5">
+            <div class="row align-items-center g-5">
+                <!-- ฝั่งซ้าย: ภาพถ่ายโปรไฟล์ทรงกลม (ภาพขาว-ดำตามต้นแบบ) -->
+                <div class="col-lg-5 text-center">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20600%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23dc2626%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23450a0a%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22288.0%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%22210%22%20font-weight%3D%22800%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%3ECR7%3C/text%3E%3Ctext%20x%3D%22300.0%22%20y%3D%22491.99999999999994%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2242%22%20letter-spacing%3D%226%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.85%22%20text-anchor%3D%22middle%22%3ECRISTIANO%20RONALDO%3C/text%3E%3C/svg%3E" 
+                         alt="Cristiano Ronaldo" 
+                         class="instructor-avatar img-fluid">
+                </div>
+
+                <!-- ฝั่งขวา: ข้อมูลผู้สอน, โปรแกรม และผลงาน -->
+                <div class="col-lg-7">
+                    <h1 class="display-4 fw-bold text-primary mb-3 lh-1">
+                        Cristiano<br>Ronaldo
+                    </h1>
+
+                    <p class="fs-5 text-dark fw-normal mb-4 pe-lg-4">
+                        Portuguese forward, five-time Ballon d'Or winner and Portugal's all-time leading international goalscorer.
+                    </p>
+
+                    <!-- 1. Program Tools Section -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark fs-5 mb-3">honours</h6>
+                        <div class="d-flex flex-wrap gap-3">
+                            <!-- แถวที่ 1 -->
+                            <div class="tech-icon-box" title="Ballon d'Or"><i class="bi bi-trophy-fill text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="UEFA Champions League"><i class="bi bi-star-fill text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="UEFA Euro 2016"><i class="bi bi-award-fill text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="UEFA Nations League"><i class="bi bi-flag-fill text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="Premier League"><i class="bi bi-shield-fill text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="La Liga"><i class="bi bi-shield-check text-primary" style="font-size:1.6rem"></i></div>
+
+                            <!-- แถวที่ 2 -->
+                            <div class="tech-icon-box" title="Serie A"><i class="bi bi-shield-shaded text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="FIFA Club World Cup"><i class="bi bi-globe2 text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="UEFA Super Cup"><i class="bi bi-patch-check-fill text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="FA Cup"><i class="bi bi-bookmark-star-fill text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="Copa del Rey"><i class="bi bi-gem text-primary" style="font-size:1.6rem"></i></div>
+                            <div class="tech-icon-box" title="European Golden Shoe"><i class="bi bi-bullseye text-primary" style="font-size:1.6rem"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Product Showcase Section -->
+                    <div>
+                        <h6 class="fw-bold text-dark fs-5 mb-2">clubs</h6>
+                        <p class="fs-5 text-dark fw-normal mb-0">Sporting CP · Manchester United · Real Madrid · Juventus · Al Nassr</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="page" id="page-contact">
+<main>
+        <!-- 1. Form Section (พื้นหลังสีขาว) -->
+        <section class="py-5">
+            <div class="container py-lg-4" style="max-width: 820px;">
+                <h1 class="display-4 fw-bold text-primary text-center mb-5">Contact Us</h1>
+
+                <form onsubmit="event.preventDefault(); alert('ข้อความของคุณถูกส่งเรียบร้อยแล้ว!');">
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <input type="text" class="contact-input w-100" placeholder="Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="contact-input w-100" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <textarea class="contact-textarea w-100" placeholder="Message" required></textarea>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- 2. Contact Info Section (พื้นหลังสีน้ำเงินสดใส) -->
+        <section class="contact-info-band text-center">
+            <div class="container">
+                <div class="row g-5 justify-content-center">
+                    <!-- Address -->
+                    <div class="col-md-4">
+                        <div class="contact-circle-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <h3 class="fw-bold fs-2 text-white mb-3">Address</h3>
+                        <p class="text-white text-opacity-90 fs-5 mb-0 lh-base">
+                            75 saint Mary James<br>
+                            &nbsp;<br>
+                            &nbsp;
+                        </p>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="col-md-4">
+                        <div class="contact-circle-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <h3 class="fw-bold fs-2 text-white mb-3">Phone</h3>
+                        <p class="text-white text-opacity-90 fs-5 mb-0 lh-base">
+                            063 350 3990<br>
+                            &nbsp;
+                        </p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-4">
+                        <div class="contact-circle-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <h3 class="fw-bold fs-2 text-white mb-3">Email</h3>
+                        <p class="text-white text-opacity-90 fs-5 mb-0 lh-base">
+                            your-email@example.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<site-footer></site-footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/**
+ * ============================================================================
+ * CR7 Fan Site - Shared Components (Header & Footer)
+ * สัปดาห์ที่ 16: การแชร์ Header และ Footer ร่วมกันทุกหน้าด้วย Vanilla JavaScript
+ * ============================================================================
+ * ช่วยให้แก้ไขเมนูนำทาง (Navbar) และส่วนท้ายเว็บ (Footer) ได้จากจุดเดียว (Single Source of Truth)
+ * ใช้งานได้ทันทีทั้งบนเครื่องตัวเอง (file:///) และบน GitHub Pages โดยไม่มีปัญหา CORS
+ */
+
+class SiteHeader extends HTMLElement {
+  connectedCallback() {
+    // แม่แบบ Navbar (Bootstrap 5)
+    this.innerHTML = `
+      <nav class="navbar navbar-expand-lg sticky-top border-bottom shadow-sm">
+        <div class="container">
+          <a class="navbar-brand d-lg-none fw-bold text-primary" href="#index">
+            <i class="bi bi-gear-fill me-1"></i>&lt;/&gt;
+          </a>
+
+          <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5 fw-medium gap-lg-3">
+              <!-- สเต็ปที่ 3.1: เติมลิงก์เชื่อมต่อหน้า Index (ใส่ href="#index") -->
+              <li class="nav-item">
+                <a class="nav-link" href="#index">Home</a>
+              </li>
+              <!-- สเต็ปที่ 3.2: เติมลิงก์เชื่อมต่อหน้ารายละเอียดคอร์ส (ใส่ href="#course") -->
+              <li class="nav-item">
+                <a class="nav-link" href="#course">Career</a>
+              </li>
+              <!-- สเต็ปที่ 3.3: เติมลิงก์เชื่อมต่อหน้าข้อมูลผู้สอน (ใส่ href="#instructors") -->
+              <li class="nav-item">
+                <a class="nav-link" href="#instructors">Profile</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Honours
+                </a>
+                <ul class="dropdown-menu shadow border-0">
+                  <li><a class="dropdown-item" href="#">Ballon d'Or</a></li>
+                  <li><a class="dropdown-item" href="#">Champions League</a></li>
+                  <li><a class="dropdown-item" href="#">Euro 2016</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#news">News & Events</a>
+              </li>
+              <!-- สเต็ปที่ 3.4: เติมลิงก์เชื่อมต่อหน้าติดต่อเรา (ใส่ href="#contact") -->
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact Us</a>
+              </li>
+            </ul>
+
+            <!-- Right Side Logo -->
+            <div class="d-none d-lg-flex align-items-center">
+              <div class="logo-badge d-flex align-items-center justify-content-center text-secondary fs-4" title="Platform Settings">
+                <i class="bi bi-gear-fill position-relative">
+                  <span class="position-absolute top-50 start-50 translate-middle text-white fw-bold" style="font-size: 0.5rem; font-family: monospace;">&lt;/&gt;</span>
+                </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    `;
+  }
+}
+
+class SiteFooter extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <footer class="site-footer text-white py-5">
+        <div class="container py-4">
+          <div class="row g-4">
+            <!-- Col 1: Brand & Social Links -->
+            <div class="col-lg-3 col-md-6">
+              <div class="footer-logo mb-4">
+                <svg width="34" height="50" viewBox="0 0 36 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 54C13.9706 54 18 49.9706 18 45V36H9C4.02944 36 0 40.0294 0 45C0 49.9706 4.02944 54 9 54Z" fill="white"/>
+                  <path d="M0 27C0 22.0294 4.02944 18 9 18H18V36H9C4.02944 36 0 31.9706 0 27Z" fill="white"/>
+                  <path d="M0 9C0 4.02944 4.02944 0 9 0H18V18H9C4.02944 18 0 13.9706 0 9Z" fill="white"/>
+                  <path d="M18 0H27C31.9706 0 36 4.02944 36 9C36 13.9706 31.9706 18 27 18H18V0Z" fill="white"/>
+                  <path d="M36 27C36 31.9706 31.9706 36 27 36C22.0294 36 18 31.9706 18 27C18 22.0294 22.0294 18 27 18C31.9706 18 36 22.0294 36 27Z" fill="white"/>
+                </svg>
+              </div>
+              <div class="d-flex gap-3 fs-5">
+                <a href="#" class="text-white text-opacity-75"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="text-white text-opacity-75"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white text-opacity-75"><i class="bi bi-youtube"></i></a>
+                <a href="#" class="text-white text-opacity-75"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+
+            <!-- Col 2: Use cases -->
+            <div class="col-lg-3 col-md-6 col-6">
+              <h6 class="fw-bold mb-3">Career</h6>
+              <ul class="list-unstyled d-flex flex-column gap-2 small">
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Sporting CP</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Manchester United</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Real Madrid</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Juventus</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Al Nassr</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Portugal national team</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Born in Funchal, Madeira</a></li>
+              </ul>
+            </div>
+
+            <!-- Col 3: Explore -->
+            <div class="col-lg-3 col-md-6 col-6">
+              <h6 class="fw-bold mb-3">Honours</h6>
+              <ul class="list-unstyled d-flex flex-column gap-2 small">
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Ballon d'Or</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Champions League</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Euro 2016</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Nations League</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Premier League</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">La Liga</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Serie A</a></li>
+              </ul>
+            </div>
+
+            <!-- Col 4: Resources -->
+            <div class="col-lg-3 col-md-6">
+              <h6 class="fw-bold mb-3">Fan site</h6>
+              <ul class="list-unstyled d-flex flex-column gap-2 small">
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Home</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Career</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Profile</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Contact Us</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">About</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Fan site</a></li>
+                <li><a href="#" class="text-white text-opacity-75 text-decoration-none">Unofficial</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    `;
+  }
+}
+
+// ลงทะเบียน Custom Web Components
+customElements.define('site-header', SiteHeader);
+customElements.define('site-footer', SiteFooter);
+
+
+const PAGES=['index','course','instructors','contact'];
+const TITLES={index:'Home',course:'Career',instructors:'Profile',contact:'Contact Us'};
+function showPage(){
+  var id=decodeURIComponent(location.hash.replace('#','')), target=null, h=id;
+  if(!PAGES.includes(id)){
+    var el=id&&document.getElementById(id), pg=el&&el.closest('.page');
+    if(pg){ h=pg.id.replace('page-',''); target=el; }
+    else if(id){ return; }
+    else if(document.querySelector('.page.show')){ return; }
+    else { h='index'; }
+  }
+  PAGES.forEach(function(p){ document.getElementById('page-'+p).classList.toggle('show',p===h); });
+  document.querySelectorAll('.navbar-nav > .nav-item > a.nav-link').forEach(function(a){
+    a.classList.toggle('active',a.getAttribute('href')==='#'+h);
+  });
+  document.title='CR7 Fan Site - '+TITLES[h];
+  if(target) target.scrollIntoView(); else window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',showPage);
+showPage();
+</script>
+</body>
+</html>
